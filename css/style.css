@@ -16,7 +16,7 @@ body {
 #logo img {
   display: block; /* Ensures it's treated as a block element */
   max-height: 60px; /* Adjust this value to make the logo smaller */
-  margin-top: -10px; /* Moves the logo upwards (negative margin) */
+  margin-top: -100px; /* Moves the logo upwards (negative margin) */
 }
 
 
