@@ -34,6 +34,58 @@
     Author: BootstrapMade.com
     License: https://bootstrapmade.com/license/
   ======================================================= -->
+  <style>
+    .console {
+      margin-bottom: 10px;
+    }
+    .info {
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      display: none;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #50D8AF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #42b190;
+    }
+
+    .center-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 20px; /* Spacing between items */
+  }
+
+  .console {
+    display: flex;
+    flex-direction: column; /* Keep button and info stacked within each console */
+    align-items: center; /* Center align within each section */
+  }
+
+  </style>
+
+<script>
+  function toggleInfo(id) {
+    const element = document.getElementById(id);
+    if (element.style.display === 'none' || element.style.display === '') {
+      element.style.display = 'block';
+    } else {
+      element.style.display = 'none';
+    }
+  }
+</script>
+
+  
 </head>
 
 <body id="body">
@@ -121,8 +173,8 @@
             <ul>
               <li><i class="ion-android-checkmark-circle"></i> Kaikenlaiset pelikonsolit pystyn huoltaa oli sitten uusi tai vanha konsoli kyseessä!</li>
               <li><i class="ion-android-checkmark-circle"></i> Voit tuoda pelikonsolin paikan päälle tai lähettää postitse.</li>
-              <li><i class="ion-android-checkmark-circle"></i> Diagnosointi 7,50€!</li>
-              <li><i class="ion-android-checkmark-circle"></i> Huoltona voi esimerkiksi olla pölyjen puhdistaminen (15€) tai vaikkapa vanhojen pelien puhdistus (1€/Nes, Snes, N64, tai GB pelikasetti)</li>
+              <li><i class="ion-android-checkmark-circle"></i> Diagnosointi 5€!</li>
+              <li><i class="ion-android-checkmark-circle"></i> Huoltona voi esimerkiksi olla pölyjen puhdistaminen (12,50€) tai vaikkapa vanhojen pelien puhdistus (1€/Nes, Snes, N64, tai GB pelikasetti)</li>
               <li><i class="ion-android-checkmark-circle"></i> Myös vanhojen konsoleiden "Modchippaaminen" onnistuu!</li>
               <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/HaH5MRXt2i8?si=Gu-0LFbdY34uiNOU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </ul>
@@ -133,7 +185,141 @@
       </div>
     </section><!-- #about -->
 
+<section div class="center-container">
+  <div class="console">
+    <h2>Hinnastoa</h2>
+    <button onclick="toggleInfo('ps5-info')">PlayStation 5</button>
+    <div id="ps5-info" class="info">
+      <p>Pölyjen puhdistus 12,50€</p>
+  </div>
+  
+  <div class="console">
+    <button onclick="toggleInfo('ps4-info')">PlayStation 4</button>
+    <div id="ps4-info" class="info">
+      <p>Pölyjen puhdistus 12,50€</p>
+      <p>Lämpötahnojen vaihto 12,50€</p>
+    </div>
+  </div>
+  
+  <div class="console">
+    <button onclick="toggleInfo('ps3-info')">PlayStation 3</button>
+    <div id="ps3-info" class="info">
+      <p>Pölyjen puhdistus 12,50€</p>
+      <p>SYSCON-koodien lukeminen 15€</p>
+      <p>Lämpötahnojen vaihto 12,50€</p>
+    </div>
+  </div>
 
+  <div class="console">
+    <button onclick="toggleInfo('ps2-info')">PlayStation 2</button>
+    <div id="ps2-info" class="info">
+      <p>Pölyjen puhdistaminen 12,50€</p>
+      <p>FMCB-muistikortin luominen (oma) 3€</p>
+    </div>
+  </div>
+
+  <div class="console">
+    <button onclick="toggleInfo('ps1-info')">PlayStation 1</button>
+    <div id="ps1-info" class="info">
+      <p>Pölyjen puhdistaminen 12,50€</p>
+      <p>Modchippaaminen (Mahdollistaa poltettujen ja muiden maiden pelien pelaamisen) 25€</p>
+    </div>
+  </div>
+
+  <div class="console">
+    <button onclick="toggleInfo('switch-info')">Nintendo Switch</button>
+    <div id="switch-info" class="info">
+      <p>Pölyjen puhdistaminen 12,50€</p>
+      <p>Lämpötahnojen vaihto 12,50€</p>
+      <p>Joy-Con sauvan vaihto 15€</p>
+    </div>
+  </div>
+
+  <div class="console">
+    <button onclick="toggleInfo('wiiu-info')">Wii U</button>
+    <div id="wiiu-info" class="info">
+      <p>Pölyjen puhdistaminen 12,50€</p>
+      <p>160-0103 tai 160-0101 vikakoodien korjaaminen 15€</p>
+      <p>Softmodaaminen 5€</p>
+    </div>
+  </div>
+
+  <div class="console">
+    <button onclick="toggleInfo('3ds-info')">3DS</button>
+    <div id="3ds-info" class="info">
+      <p>Softmodaaminen 5€</p>
+    </div>
+  </div>
+
+  <div class="console">
+    <button onclick="toggleInfo('wii-info')">Wii</button>
+    <div id="wii-info" class="info">
+      <p>Pölyjen puhdistaminen 12,50€</p>
+      <p>Softmodaaminen 5€</p>
+    </div>
+  </div>
+
+  <div class="console">
+    <button onclick="toggleInfo('gamecube-info')">GameCube</button>
+    <div id="gamecube-info" class="info">
+      <p>Pölyjen puhdistaminen 12,50€</p>
+      <p>Xeno modchipin asennus 25€</p>
+    </div>
+  </div>
+
+  <div class="console">
+    <button onclick="toggleInfo('n64-info')">N64</button>
+    <div id="n64-info" class="info">
+      <p>Pölyjen puhdistaminen 12,50€</p>
+      <p>Pelikasetin puhdistus 1€</p>
+    </div>
+  </div>
+
+  <div class="console">
+    <button onclick="toggleInfo('snes-info')">SNES</button>
+    <div id="snes-info" class="info">
+      <p>Pölyjen puhdistaminen 12,50€</p>
+      <p>Pelikasetin puhdistus 1€</p>
+    </div>
+  </div>
+
+  <div class="console">
+    <button onclick="toggleInfo('gb-info')">Game Boy</button>
+    <div id="gb-info" class="info">
+      <p>Pelikasetin puhdistus 1€</p>
+    </div>
+  </div>
+
+  <div class="console">
+    <button onclick="toggleInfo('nes-info')">NES</button>
+    <div id="nes-info" class="info">
+      <p>Pölyjen puhdistaminen 12,50€</p>
+      <p>Pelikasetin puhdistus 1€</p>
+    </div>
+  </div>
+
+  <div class="console">
+    <button onclick="toggleInfo('xboxo-info')">Xbox One</button>
+    <div id="xboxo-info" class="info">
+      <p>Pölyjen puhdistaminen 12,50€</p>
+    </div>
+  </div>
+
+  <div class="console">
+    <button onclick="toggleInfo('xbox360-info')">Xbox 360</button>
+    <div id="xbox360-info" class="info">
+      <p>Pölyjen puhdistaminen 12,50€</p>
+    </div>
+  </div>
+
+  <div class="console">
+    <button onclick="toggleInfo('xbox-info')">Xbox</button>
+    <div id="xbox-info" class="info">
+      <p>Pölyjen puhdistaminen 12,50€</p>
+    </div>
+  </div>
+</div>
+</section><!-- #about -->
 
     <!--==========================
       Contact Section
