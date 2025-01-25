@@ -35,19 +35,31 @@
     License: https://bootstrapmade.com/license/
   ======================================================= -->
   <style>
-    .console {
-      margin-bottom: 10px;
-    }
-    .info {
-      margin: 10px 0;
-      padding: 10px;
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 5px;
+    /* General styles */
+    .hidden {
       display: none;
     }
+    .center-container {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .category {
+      margin: 20px 0;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+    }
+
+    /* Console buttons */
     button {
       padding: 10px 15px;
+      margin: 5px;
+      font-size: 16px;
       background-color: #50D8AF;
       color: white;
       border: none;
@@ -55,23 +67,21 @@
       cursor: pointer;
       transition: background-color 0.3s;
     }
+
     button:hover {
       background-color: #42b190;
     }
 
-    .center-container {
-    text-align: center;
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    gap: 20px; /* Spacing between items */
-  }
-
-  .console {
-    display: flex;
-    flex-direction: column; /* Keep button and info stacked within each console */
-    align-items: center; /* Center align within each section */
-  }
-
+    /* Info box styles */
+    .info {
+      margin: 10px auto;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      max-width: 500px;
+      text-align: left;
+    }
   </style>
 
 <script>
@@ -185,141 +195,130 @@
       </div>
     </section><!-- #about -->
 
-<section div class="center-container">
-  <div class="console">
-    <h2>Hinnastoa</h2>
-    <button onclick="toggleInfo('ps5-info')">PlayStation 5</button>
-    <div id="ps5-info" class="info">
-      <p>Pölyjen puhdistus 12,50€</p>
-  </div>
+    <section class="center-container">
+      <h2>Hinnastoa</h2>
   
-  <div class="console">
-    <button onclick="toggleInfo('ps4-info')">PlayStation 4</button>
-    <div id="ps4-info" class="info">
-      <p>Pölyjen puhdistus 12,50€</p>
-      <p>Lämpötahnojen vaihto 12,50€</p>
-    </div>
-  </div>
+      <!-- Categories -->
+      <div>
+        <button onclick="toggleCategory('nintendo-consoles')">Nintendo</button>
+        <button onclick="toggleCategory('sony-consoles')">Sony</button>
+        <button onclick="toggleCategory('microsoft-consoles')">Microsoft</button>
+      </div>
   
-  <div class="console">
-    <button onclick="toggleInfo('ps3-info')">PlayStation 3</button>
-    <div id="ps3-info" class="info">
-      <p>Pölyjen puhdistus 12,50€</p>
-      <p>SYSCON-koodien lukeminen 15€</p>
-      <p>Lämpötahnojen vaihto 12,50€</p>
-    </div>
-  </div>
-
-  <div class="console">
-    <button onclick="toggleInfo('ps2-info')">PlayStation 2</button>
-    <div id="ps2-info" class="info">
-      <p>Pölyjen puhdistaminen 12,50€</p>
-      <p>FMCB-muistikortin luominen (oma) 3€</p>
-    </div>
-  </div>
-
-  <div class="console">
-    <button onclick="toggleInfo('ps1-info')">PlayStation 1</button>
-    <div id="ps1-info" class="info">
-      <p>Pölyjen puhdistaminen 12,50€</p>
-      <p>Modchippaaminen (Mahdollistaa poltettujen ja muiden maiden pelien pelaamisen) 25€</p>
-    </div>
-  </div>
-
-  <div class="console">
-    <button onclick="toggleInfo('switch-info')">Nintendo Switch</button>
-    <div id="switch-info" class="info">
-      <p>Pölyjen puhdistaminen 12,50€</p>
-      <p>Lämpötahnojen vaihto 12,50€</p>
-      <p>Joy-Con sauvan vaihto 15€</p>
-    </div>
-  </div>
-
-  <div class="console">
-    <button onclick="toggleInfo('wiiu-info')">Wii U</button>
-    <div id="wiiu-info" class="info">
-      <p>Pölyjen puhdistaminen 12,50€</p>
-      <p>160-0103 tai 160-0101 vikakoodien korjaaminen 15€</p>
-      <p>Softmodaaminen 5€</p>
-    </div>
-  </div>
-
-  <div class="console">
-    <button onclick="toggleInfo('3ds-info')">3DS</button>
-    <div id="3ds-info" class="info">
-      <p>Softmodaaminen 5€</p>
-    </div>
-  </div>
-
-  <div class="console">
-    <button onclick="toggleInfo('wii-info')">Wii</button>
-    <div id="wii-info" class="info">
-      <p>Pölyjen puhdistaminen 12,50€</p>
-      <p>Softmodaaminen 5€</p>
-    </div>
-  </div>
-
-  <div class="console">
-    <button onclick="toggleInfo('gamecube-info')">GameCube</button>
-    <div id="gamecube-info" class="info">
-      <p>Pölyjen puhdistaminen 12,50€</p>
-      <p>Xeno modchipin asennus 25€</p>
-    </div>
-  </div>
-
-  <div class="console">
-    <button onclick="toggleInfo('n64-info')">N64</button>
-    <div id="n64-info" class="info">
-      <p>Pölyjen puhdistaminen 12,50€</p>
-      <p>Pelikasetin puhdistus 1€</p>
-    </div>
-  </div>
-
-  <div class="console">
-    <button onclick="toggleInfo('snes-info')">SNES</button>
-    <div id="snes-info" class="info">
-      <p>Pölyjen puhdistaminen 12,50€</p>
-      <p>Pelikasetin puhdistus 1€</p>
-    </div>
-  </div>
-
-  <div class="console">
-    <button onclick="toggleInfo('gb-info')">Game Boy</button>
-    <div id="gb-info" class="info">
-      <p>Pelikasetin puhdistus 1€</p>
-    </div>
-  </div>
-
-  <div class="console">
-    <button onclick="toggleInfo('nes-info')">NES</button>
-    <div id="nes-info" class="info">
-      <p>Pölyjen puhdistaminen 12,50€</p>
-      <p>Pelikasetin puhdistus 1€</p>
-    </div>
-  </div>
-
-  <div class="console">
-    <button onclick="toggleInfo('xboxo-info')">Xbox One</button>
-    <div id="xboxo-info" class="info">
-      <p>Pölyjen puhdistaminen 12,50€</p>
-    </div>
-  </div>
-
-  <div class="console">
-    <button onclick="toggleInfo('xbox360-info')">Xbox 360</button>
-    <div id="xbox360-info" class="info">
-      <p>Pölyjen puhdistaminen 12,50€</p>
-    </div>
-  </div>
-
-  <div class="console">
-    <button onclick="toggleInfo('xbox-info')">Xbox</button>
-    <div id="xbox-info" class="info">
-      <p>Pölyjen puhdistaminen 12,50€</p>
-    </div>
-  </div>
-</div>
-</section><!-- #about -->
+      <!-- Nintendo Consoles -->
+      <div id="nintendo-consoles" class="category hidden">
+        <h3>Nintendo konsolit</h3>
+        <button onclick="toggleInfo('switch-info')">Nintendo Switch</button>
+        <div id="switch-info" class="info hidden">
+          <p>Pölyjen puhdistaminen 12,50€</p>
+          <p>Lämpötahnojen vaihto 12,50€</p>
+          <p>Joy-Con sauvan vaihto 15€</p>
+        </div>
+        <button onclick="toggleInfo('wiiu-info')">Wii U</button>
+        <div id="wiiu-info" class="info hidden">
+          <p>Pölyjen puhdistaminen 12,50€</p>
+          <p>160-0103 tai 160-0101 vikakoodien korjaaminen 15€</p>
+          <p>Softmodaaminen 5€</p>
+        </div>
+        <button onclick="toggleInfo('wii-info')">Wii</button>
+        <div id="wii-info" class="info hidden">
+          <p>Pölyjen puhdistaminen 12,50€</p>
+          <p>Softmodaaminen 5€</p>
+        </div>
+        <button onclick="toggleInfo('gamecube-info')">GameCube</button>
+        <div id="gamecube-info" class="info hidden">
+          <p>Pölyjen puhdistaminen 12,50€</p>
+          <p>Xeno modchipin asennus 25€</p>
+        </div>
+        <button onclick="toggleInfo('n64-info')">N64</button>
+        <div id="n64-info" class="info hidden">
+          <p>Pölyjen puhdistaminen 12,50€</p>
+          <p>Pelikasetin puhdistus 1€</p>
+        </div>
+        <button onclick="toggleInfo('snes-info')">SNES</button>
+        <div id="snes-info" class="info hidden">
+          <p>Pölyjen puhdistaminen 12,50€</p>
+          <p>Pelikasetin puhdistus 1€</p>
+        </div>
+        <button onclick="toggleInfo('gb-info')">Game Boy</button>
+        <div id="gb-info" class="info hidden">
+          <p>Pelikasetin puhdistus 1€</p>
+        </div>
+        <button onclick="toggleInfo('nes-info')">NES</button>
+        <div id="nes-info" class="info hidden">
+          <p>Pölyjen puhdistaminen 12,50€</p>
+          <p>Pelikasetin puhdistus 1€</p>
+        </div>
+      </div>
+  
+      <!-- Sony Consoles -->
+      <div id="sony-consoles" class="category hidden">
+        <h3>Sony konsolit</h3>
+        <button onclick="toggleInfo('ps5-info')">PlayStation 5</button>
+        <div id="ps5-info" class="info hidden">
+          <p>Pölyjen puhdistus 12,50€</p>
+        </div>
+        <button onclick="toggleInfo('ps4-info')">PlayStation 4</button>
+        <div id="ps4-info" class="info hidden">
+          <p>Pölyjen puhdistus 12,50€</p>
+          <p>Lämpötahnojen vaihto 12,50€</p>
+        </div>
+        <button onclick="toggleInfo('ps3-info')">PlayStation 3</button>
+        <div id="ps3-info" class="info hidden">
+          <p>Pölyjen puhdistus 12,50€</p>
+          <p>SYSCON-koodien lukeminen 15€</p>
+          <p>Lämpötahnojen vaihto 12,50€</p>
+        </div>
+        <button onclick="toggleInfo('ps2-info')">PlayStation 2</button>
+        <div id="ps2-info" class="info hidden">
+          <p>Pölyjen puhdistaminen 12,50€</p>
+          <p>FMCB-muistikortin luominen (oma) 3€</p>
+        </div>
+        <button onclick="toggleInfo('ps1-info')">PlayStation 1</button>
+        <div id="ps1-info" class="info hidden">
+          <p>Pölyjen puhdistaminen 12,50€</p>
+          <p>Modchippaaminen (Mahdollistaa poltettujen ja muiden maiden pelien pelaamisen) 25€</p>
+        </div>
+      </div>
+  
+      <!-- Microsoft Consoles -->
+      <div id="microsoft-consoles" class="category hidden">
+        <h3>Microsoft konsolit</h3>
+        <button onclick="toggleInfo('xboxo-info')">Xbox One</button>
+        <div id="xboxo-info" class="info hidden">
+          <p>Pölyjen puhdistaminen 12,50€</p>
+        </div>
+        <button onclick="toggleInfo('xbox360-info')">Xbox 360</button>
+        <div id="xbox360-info" class="info hidden">
+          <p>Pölyjen puhdistaminen 12,50€</p>
+        </div>
+        <button onclick="toggleInfo('xbox-info')">Xbox</button>
+        <div id="xbox-info" class="info hidden">
+          <p>Pölyjen puhdistaminen 12,50€</p>
+        </div>
+      </div>
+    </section>
+  
+    <script>
+      // Function to toggle category visibility
+      function toggleCategory(categoryId) {
+        document.querySelectorAll('.category').forEach(category => {
+          if (category.id === categoryId) {
+            category.classList.toggle('hidden');
+          } else {
+            category.classList.add('hidden');
+          }
+        });
+      }
+  
+      // Function to toggle console info visibility
+      function toggleInfo(infoId) {
+        const infoElement = document.getElementById(infoId);
+        if (infoElement) {
+          infoElement.classList.toggle('hidden');
+        }
+      }
+    </script>
 
     <!--==========================
       Contact Section
