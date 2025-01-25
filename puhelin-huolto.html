@@ -34,6 +34,66 @@
     Author: BootstrapMade.com
     License: https://bootstrapmade.com/license/
   ======================================================= -->
+  <style>
+    /* General styles */
+    .hidden {
+      display: none;
+    }
+    .center-container {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .category {
+      margin: 20px 0;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+    }
+
+    /* Console buttons */
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      font-size: 16px;
+      background-color: #50D8AF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #42b190;
+    }
+
+    /* Info box styles */
+    .info {
+      margin: 10px auto;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      max-width: 500px;
+      text-align: left;
+    }
+  </style>
+
+<script>
+  function toggleInfo(id) {
+    const element = document.getElementById(id);
+    if (element.style.display === 'none' || element.style.display === '') {
+      element.style.display = 'block';
+    } else {
+      element.style.display = 'none';
+    }
+  }
+</script>
 </head>
 
 <body id="body">
@@ -122,6 +182,7 @@
               <li><i class="ion-android-checkmark-circle"></i> Korjaan kaiken merkkisiä puhelimia.</li>
               <li><i class="ion-android-checkmark-circle"></i> Diagnosointi 5€!</li>
               <li><i class="ion-android-checkmark-circle"></i> Tarjoan nopeita ja edullisia ratkaisuja!</li>
+              <li><i class="ion-android-checkmark-circle"></i> Käytän alkuperäis- ja tarvike osia</li>
               <li><i class="ion-android-checkmark-circle"></i> Voit tuoda puhelimen paikan päälle tai lähettää postitse.</li>
               <li><i class="ion-android-checkmark-circle"></i> Kokemusta yli neljä vuotta!</li>
             </ul>
@@ -131,7 +192,127 @@
 
       </div>
     </section><!-- #about -->
+    <section class="center-container">
+    <h2>Esimerkki hinnastoa</h2>
 
+    <!-- Categories -->
+    <div>
+      <button onclick="toggleCategory('samsung')">Samsung</button>
+      <button onclick="toggleCategory('apple')">Apple</button>
+      <button onclick="toggleCategory('muut')">Muut merkit</button>
+    </div>
+
+    <!-- Samsung Section -->
+    <div id="samsung" class="category hidden">
+      <h3>Samsungin puhelimet</h3>
+      <button onclick="toggleInfo('s24u-info')">S24 Ultra</button>
+      <div id="s24u-info" class="info hidden">
+        <p>Näytön vaihto 315€</p>
+        <p>Akun vaihto 65€</p>
+        <p>Takalasin vaihto 65€</p>
+        <p>Latausportin vaihto 55€</p>
+      </div>
+      <button onclick="toggleInfo('s24p-info')">S24+</button>
+      <div id="s24p-info" class="info hidden">
+        <p>Näytön vaihto 215€</p>
+        <p>Akun vaihto 65€</p>
+        <p>Takalasin vaihto 65€</p>
+        <p>Latausportin vaihto 55€</p>
+      </div>
+      <button onclick="toggleInfo('s24-info')">S24</button>
+      <div id="s24-info" class="info hidden">
+        <p>Näytön vaihto 180€</p>
+        <p>Akun vaihto 65€</p>
+        <p>Takalasin vaihto 65€</p>
+        <p>Latausportin vaihto 55€</p>
+      </div>
+      <button onclick="toggleInfo('s23u-info')">S23 Ultra</button>
+      <div id="s23u-info" class="info hidden">
+        <p>Näytön vaihto 295€</p>
+        <p>Akun vaihto 65€</p>
+        <p>Takalasin vaihto 70€</p>
+        <p>Latausportin vaihto 55€</p>
+      </div>
+      <button onclick="toggleInfo('s23p-info')">S23+</button>
+      <div id="s23p-info" class="info hidden">
+        <p>Näytön vaihto 235€</p>
+        <p>Akun vaihto 65€</p>
+        <p>Takalasin vaihto 65€</p>
+        <p>Latausportin vaihto 55€</p>
+      </div>
+      <button onclick="toggleInfo('s23-info')">S23</button>
+      <div id="s23-info" class="info hidden">
+        <p>Näytön vaihto 225€</p>
+        <p>Akun vaihto 65€</p>
+        <p>Takalasin vaihto 65€</p>
+        <p>Latausportin vaihto 55€</p>
+      </div>
+      <button onclick="toggleInfo('muuts-info')">Muut mallit</button>
+      <div id="muuts-info" class="info hidden">
+        <p>Kysy rohkeasti omalle mallille korjauksesta tarjousta! Halvat oli hinnat jopa uusimpien yli 1000€ puhelimien korjauksissa! Pyrin aina saamaan hinnat halvemmaksi muihin verrattuna!</p>
+      </div>
+    </div>
+
+    <!-- Apple Section -->
+    <div id="apple" class="category hidden">
+      <h3>Applen puhelimet</h3>
+      <button onclick="toggleInfo('ip16pm-info')">iPhone 16 (Kaikki)</button>
+      <div id="ip16pm-info" class="info hidden">
+        <p>Tulossa</p>
+      </div>
+      <button onclick="toggleInfo('ip15pm-info')">iPhone 15 Pro Max</button>
+      <div id="ip15pm-info" class="info hidden">
+        <p>Näytön vaihto 150-465€</p>
+        <p>Akun vaihto 60€</p>
+      </div>
+      <button onclick="toggleInfo('ip15pr-info')">iPhone 15 Pro</button>
+      <div id="ip15pr-info" class="info hidden">
+        <p>Näytön vaihto 150-435€</p>
+        <p>Akun vaihto 60€</p>
+      </div>
+      <button onclick="toggleInfo('ip15-info')">iPhone 15</button>
+      <div id="ip15-info" class="info hidden">
+        <p>Näytön vaihto 100-340€</p>
+        <p>Akun vaihto 60€</p>
+      </div>
+      <button onclick="toggleInfo('muuta-info')">Muut mallit</button>
+      <div id="muuta-info" class="info hidden">
+        <p>Kysy rohkeasti omalle mallille korjauksesta tarjousta! Pyrin aina saamaan hinnat halvemmaksi muihin verrattuna!</p>
+      </div>
+    </div>
+
+    <!-- Other Brands Section -->
+    <div id="muut" class="category hidden">
+      <h3>Muut merkit</h3>
+      <button onclick="toggleInfo('muutm-info')">Muut merkit</button>
+      <div id="muutm-info" class="info hidden">
+        <p>Kysy rohkeasti omalle merkille ja mallille korjauksesta tarjousta! Pyrin aina saamaan hinnat halvemmaksi muihin verrattuna!</p>
+      </div>
+    </div>
+  </section>
+  
+    <script>
+      // Function to toggle categories
+      function toggleCategory(categoryId) {
+        document.querySelectorAll('.category').forEach(category => {
+          category.classList.add('hidden'); // Hide all categories
+        });
+        const selectedCategory = document.getElementById(categoryId);
+        if (selectedCategory) {
+          selectedCategory.classList.toggle('hidden'); // Show the clicked category
+        }
+      }
+  
+      // Function to toggle info sections
+      function toggleInfo(infoId) {
+        const infoElement = document.getElementById(infoId);
+        if (infoElement) {
+          infoElement.classList.toggle('hidden');
+        } else {
+          console.error(`Info section not found: ${infoId}`);
+        }
+      }
+    </script>
 
     <!--==========================
       Contact Section
