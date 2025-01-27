@@ -34,6 +34,68 @@
     Author: BootstrapMade.com
     License: https://bootstrapmade.com/license/
   ======================================================= -->
+
+  <style>
+    /* General styles */
+    .hidden {
+      display: none;
+    }
+    .center-container {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .category {
+      margin: 20px 0;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+    }
+
+    /* Console buttons */
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      font-size: 16px;
+      background-color: #50D8AF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #42b190;
+    }
+
+    /* Info box styles */
+    .info {
+      margin: 10px auto;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      max-width: 500px;
+      text-align: left;
+    }
+  </style>
+
+<script>
+  function toggleInfo(id) {
+    const element = document.getElementById(id);
+    if (element.style.display === 'none' || element.style.display === '') {
+      element.style.display = 'block';
+    } else {
+      element.style.display = 'none';
+    }
+  }
+</script>
+
 </head>
 
 <body id="body">
@@ -124,9 +186,9 @@
             <h2>Tietokoneiden huolto</h2>
             <ul>
               <li><i class="ion-android-checkmark-circle"></i> Kaikkien pöytäkoneiden ja läppäreiden huoltaminen onnistuu.</li>
-              <li><i class="ion-android-checkmark-circle"></i> Diagnosointi 5€!</li>
-              <li><i class="ion-android-checkmark-circle"></i> Huoltona voi vaikka olla esimerkiksi pölyjen puhdistaminen (12,50€) ja lämpötahnojen vaihto (12,50€)</li>
-              <li><i class="ion-android-checkmark-circle"></i> Poistitko vahingossa jonkin tärkeän tiedoston tai onko sinulla tietokone, joka ei toimi ja haluat siitä saada tiedot pelastettua? Ei hätää! Meiltä onnistuu tietojen pelastaminen kiintolevyiltä ja muistikorteilta (35€). Myös vanhemmista IDE kiintolevyistä onnistuu tietojen pelastaminen!</li>
+              <li><i class="ion-android-checkmark-circle"></i> Diagnosointi <b>5€!</b></li>
+              <li><i class="ion-android-checkmark-circle"></i> Huoltona voi vaikka olla esimerkiksi pölyjen puhdistaminen <b>(12,50€)</b> ja lämpötahnojen vaihto <b>(12,50€)</b></li>
+              <li><i class="ion-android-checkmark-circle"></i> Poistitko vahingossa jonkin tärkeän tiedoston tai onko sinulla tietokone, joka ei toimi ja haluat siitä saada tiedot pelastettua? Ei hätää! Meiltä onnistuu tietojen pelastaminen kiintolevyiltä ja muistikorteilta <b>(35€)</b>. Myös vanhemmista IDE kiintolevyistä onnistuu tietojen pelastaminen!</li>
               <li><i class="ion-android-checkmark-circle"></i> Kokemusta lapsesta asti!</li>
             </ul>
 
@@ -135,6 +197,44 @@
 
       </div>
     </section><!-- #about -->
+
+    <section class="center-container">
+      <h2>Esimerkki hinnastoa</h2>
+  
+      <!-- Categories -->
+      <div>
+        <button onclick="toggleCategory('tietokoneet')">Tietokoneet</button>
+      </div>
+
+    <div id="tietokoneet" class="category show">
+      <h3>Tietokoneet</h3>
+      <button onclick="toggleInfo('tietokoneet')">Tietokoneet</button>
+      <div id="tietokoneet-info" class="info show">
+        <p>Windows 10 tai 11 asennus <b>5€</b> (ei sis. lisenssiä, mutta tiedän mistä saa paljon halvemmalla aidon lisenssin!)</p>
+      </div>
+    </div>
+  </section>
+
+      <script>
+        // Function to toggle category visibility
+        function toggleCategory(categoryId) {
+          document.querySelectorAll('.category').forEach(category => {
+            if (category.id === categoryId) {
+              category.classList.toggle('hidden');
+            } else {
+              category.classList.add('hidden');
+            }
+          });
+        }
+    
+        // Function to toggle console info visibility
+        function toggleInfo(infoId) {
+          const infoElement = document.getElementById(infoId);
+          if (infoElement) {
+            infoElement.classList.toggle('hidden');
+          }
+        }
+      </script>
 
 
 
