@@ -1,44 +1,40 @@
-const express = require("express");
-const cors = require("cors");
-const multer = require("multer");
-const fs = require("fs");
-const { STLLoader } = require("three/examples/jsm/loaders/STLLoader.js");
+import express from 'express';
+import multer from 'multer';
+import cors from 'cors';
+import fs from 'fs';
+import * as THREE from 'three';  // Import THREE for vector3 and other operations
+import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 
 const app = express();
-const upload = multer({ dest: "uploads/" });
-
-app.use(cors()); // Allow frontend requests
+app.use(cors());
 app.use(express.json());
 
-app.post("/upload", upload.single("model"), async (req, res) => {
-  try {
+const upload = multer({ dest: 'uploads/' });
+
+app.post('/upload', upload.single('file'), (req, res) => {
     const filePath = req.file.path;
-    const data = fs.readFileSync(filePath);
+    const fileBuffer = fs.readFileSync(filePath);
 
+    // Load STL file
     const loader = new STLLoader();
-    const geometry = loader.parse(data.buffer);
-    const volume = calculateVolume(geometry);
+    const geometry = loader.parse(fileBuffer);
 
-    const filamentUsage = volume * 1.25; // Adjust factor based on density
-    const costPerMeter = 0.05; // Example filament cost
-    const estimatedCost = filamentUsage * costPerMeter;
+    // Compute bounding box (used for cost estimation)
+    geometry.computeBoundingBox();
+    const size = geometry.boundingBox.getSize(new THREE.Vector3());
 
-    res.json({ filamentUsage, estimatedCost });
-  } catch (error) {
-    res.status(500).json({ error: "Failed to process 3D model" });
-  }
+    // Calculate estimated filament usage (simplified)
+    const volume = size.x * size.y * size.z;  // Approximation
+    const price = volume * 0.05; // Price per cubic mm
+
+    res.json({ price: price.toFixed(2) });
+
+    // Delete uploaded file
+    fs.unlinkSync(filePath);
 });
 
-function calculateVolume(geometry) {
-  let volume = 0;
-  geometry.computeVertexNormals();
-  geometry.faces.forEach((face) => {
-    const v1 = geometry.vertices[face.a];
-    const v2 = geometry.vertices[face.b];
-    const v3 = geometry.vertices[face.c];
-    volume += v1.dot(v2.cross(v3)) / 6.0;
-  });
-  return Math.abs(volume);
-}
-
-app.listen(3000, () => console.log("Server running on port 3000"));
+// Fixing the duplicate app.listen()
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
