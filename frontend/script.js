@@ -48,19 +48,28 @@ function previewModel(event) {
 
 
 
-async function uploadFile() {
-    const file = document.getElementById("fileInput").files[0];
-    if (!file) return alert("Please upload a file");
+function uploadFile() {
+    const fileInput = document.getElementById("fileInput");
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert("Please select a file!");
+        return;
+    }
 
     const formData = new FormData();
-    formData.append("model", file);
+    formData.append("file", file);  // Ensure the field name is 'file'
 
-    const response = await fetch("https://digikiikka-github-io.onrender.com/upload", {
+    fetch("https://digikiikka-github-io.onrender.com/upload", {
         method: "POST",
         body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Success:", data);
+        alert(`Estimated price: ${data.price}`);
+    })
+    .catch((error) => {
+        console.error("Error:", error);
     });
-
-    const data = await response.json();
-    document.getElementById("priceResult").textContent =
-        `Estimated Price: $${data.estimatedCost.toFixed(2)}`;
 }
