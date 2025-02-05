@@ -15,6 +15,10 @@ app.use(express.json());
 // Set up multer for file upload
 const upload = multer({ dest: 'uploads/' });
 
+// Filament Pricing Constants
+const FILAMENT_DENSITY = 1.25; // g/cm³ for PLA
+const COST_PER_GRAM = 0.02; // $0.02 per gram
+
 // File upload and processing endpoint
 app.post('/upload', upload.single('file'), (req, res) => {
     // Check if file is uploaded correctly
@@ -42,15 +46,17 @@ app.post('/upload', upload.single('file'), (req, res) => {
         geometry.computeBoundingBox();
         const size = geometry.boundingBox.getSize(new THREE.Vector3());
 
-        // Calculate estimated filament usage (simplified using bounding box dimensions)
-        const volume = size.x * size.y * size.z;  // Approximation of volume in cubic mm
-		const priceInCents = volume * 0.05; // Price per cubic mm in cents
+        // Convert mm³ to cm³
+        const volumeCm3 = (size.x * size.y * size.z) / 1000;
 
-		// Convert the price to dollars
-		const priceInDollars = priceInCents / 100; // Convert cents to dollars
+        // Estimate weight in grams
+        const weightGrams = volumeCm3 * FILAMENT_DENSITY;
 
-		// Send the calculated price as the response
-		res.json({ price: priceInDollars.toFixed(2) });
+        // Calculate cost
+        const priceInDollars = weightGrams * COST_PER_GRAM;
+
+        // Send response with the calculated price
+        res.json({ price: priceInDollars.toFixed(2) });
     } catch (error) {
         console.error('Error processing the STL file:', error);
         res.status(500).json({ error: "Error processing the STL file" });
