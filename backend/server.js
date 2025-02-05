@@ -44,10 +44,13 @@ app.post('/upload', upload.single('file'), (req, res) => {
 
         // Calculate estimated filament usage (simplified using bounding box dimensions)
         const volume = size.x * size.y * size.z;  // Approximation of volume in cubic mm
-        const price = volume * 0.05; // Price per cubic mm (you can adjust this formula)
+		const priceInCents = volume * 0.05; // Price per cubic mm in cents
 
-        // Send the calculated price as the response
-        res.json({ price: price.toFixed(2) });
+		// Convert the price to dollars
+		const priceInDollars = priceInCents / 100; // Convert cents to dollars
+
+		// Send the calculated price as the response
+		res.json({ price: priceInDollars.toFixed(2) });
     } catch (error) {
         console.error('Error processing the STL file:', error);
         res.status(500).json({ error: "Error processing the STL file" });

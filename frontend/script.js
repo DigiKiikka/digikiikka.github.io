@@ -58,7 +58,7 @@ function uploadFile() {
     }
 
     const formData = new FormData();
-    formData.append("file", file);  // Ensure the field name is 'file', as expected by multer
+    formData.append("file", file);
 
     fetch("https://digikiikka-github-io.onrender.com/upload", {
         method: "POST",
@@ -67,7 +67,7 @@ function uploadFile() {
     .then(response => response.json())
     .then(data => {
         console.log("Success:", data);
-        alert(`Estimated price: ${data.price}`);
+        document.getElementById("priceDisplay").innerText = `Estimated Price: ${data.price} USD`; // Display price in UI
     })
     .catch((error) => {
         console.error("Error:", error);
