@@ -15,9 +15,11 @@ app.use(express.json());
 // Set up multer for file upload
 const upload = multer({ dest: 'uploads/' });
 
+// File upload and processing endpoint
 app.post('/upload', upload.single('file'), (req, res) => {
     // Check if file is uploaded correctly
     if (!req.file) {
+        console.error("No file uploaded.");
         return res.status(400).json({ error: "No file uploaded" });
     }
 

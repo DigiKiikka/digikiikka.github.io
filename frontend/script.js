@@ -58,7 +58,7 @@ function uploadFile() {
     }
 
     const formData = new FormData();
-    formData.append("file", file);  // Ensure the field name is 'file'
+    formData.append("file", file);  // Ensure the field name is 'file', as expected by multer
 
     fetch("https://digikiikka-github-io.onrender.com/upload", {
         method: "POST",
@@ -71,5 +71,7 @@ function uploadFile() {
     })
     .catch((error) => {
         console.error("Error:", error);
+        alert("An error occurred while processing the file.");
     });
 }
+
