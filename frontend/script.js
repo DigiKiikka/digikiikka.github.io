@@ -38,7 +38,7 @@ async function uploadFile() {
     const formData = new FormData();
     formData.append("model", file);
 
-    const response = await fetch("https://your-backend.onrender.com/upload", {
+    const response = await fetch("https://digikiikka-github-io.onrender.com/upload", {
         method: "POST",
         body: formData,
     });
