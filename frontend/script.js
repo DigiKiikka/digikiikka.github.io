@@ -6,7 +6,7 @@ function previewModel(event) {
 
     const reader = new FileReader();
     reader.onload = function (e) {
-        const loader = new THREE.STLLoader();
+        const loader = new THREE.STLLoader(); // This should now work
         const geometry = loader.parse(e.target.result);
 
         const scene = new THREE.Scene();
@@ -30,6 +30,7 @@ function previewModel(event) {
     };
     reader.readAsArrayBuffer(file);
 }
+
 
 async function uploadFile() {
     const file = document.getElementById("fileInput").files[0];
