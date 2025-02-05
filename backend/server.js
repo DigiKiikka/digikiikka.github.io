@@ -2,71 +2,80 @@ import express from 'express';
 import multer from 'multer';
 import cors from 'cors';
 import fs from 'fs';
-import * as THREE from 'three';  // Import THREE.js for 3D operations
+import * as THREE from 'three';  
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 
-// Create express app
 const app = express();
 
-// Middlewares
 app.use(cors());
 app.use(express.json());
 
-// Set up multer for file upload
 const upload = multer({ dest: 'uploads/' });
 
-// Filament Pricing Constants
-const FILAMENT_DENSITY = 1.25; // g/cm³ for PLA
+// **MAXIMUM BUILD VOLUME (mm)**
+const MAX_BUILD_X = 220;
+const MAX_BUILD_Y = 220;
+const MAX_BUILD_Z = 225;
+
+// **Filament Properties**
+const FILAMENT_DENSITY = 1.25; // g/cm³ (PLA)
 const COST_PER_GRAM = 0.02; // $0.02 per gram
 
-// File upload and processing endpoint
 app.post('/upload', upload.single('file'), (req, res) => {
-    // Check if file is uploaded correctly
     if (!req.file) {
         console.error("No file uploaded.");
         return res.status(400).json({ error: "No file uploaded" });
     }
 
-    console.log('File uploaded:', req.file);  // Log uploaded file details
+    console.log('File uploaded:', req.file);
 
     const filePath = req.file.path;
-    
-    // Read the uploaded file as a buffer
     const fileBuffer = fs.readFileSync(filePath);
 
     try {
-        // Convert the buffer to an ArrayBuffer
         const arrayBuffer = fileBuffer.buffer.slice(fileBuffer.byteOffset, fileBuffer.byteOffset + fileBuffer.byteLength);
-
-        // Load STL file using the STLLoader
         const loader = new STLLoader();
         const geometry = loader.parse(arrayBuffer);
 
-        // Compute bounding box for cost estimation
         geometry.computeBoundingBox();
         const size = geometry.boundingBox.getSize(new THREE.Vector3());
 
-        // Convert mm³ to cm³
-        const volumeCm3 = (size.x * size.y * size.z) / 1000;
+        let scaleFactor = 1.0;
+        if (size.x > MAX_BUILD_X || size.y > MAX_BUILD_Y || size.z > MAX_BUILD_Z) {
+            scaleFactor = Math.min(MAX_BUILD_X / size.x, MAX_BUILD_Y / size.y, MAX_BUILD_Z / size.z);
+        }
 
-        // Estimate weight in grams
-        const weightGrams = volumeCm3 * FILAMENT_DENSITY;
+        const scaledSize = {
+            x: size.x * scaleFactor,
+            y: size.y * scaleFactor,
+            z: size.z * scaleFactor,
+        };
 
-        // Calculate cost
-        const priceInDollars = weightGrams * COST_PER_GRAM;
+        const volumeCm3 = (scaledSize.x * scaledSize.y * scaledSize.z) / 1000;
+        const modelWeight = volumeCm3 * FILAMENT_DENSITY;
+        const price = modelWeight * COST_PER_GRAM;
 
-        // Send response with the calculated price
-        res.json({ price: priceInDollars.toFixed(2) });
+        const surfaceAreaCm2 = 2 * (scaledSize.x * scaledSize.y + scaledSize.y * scaledSize.z + scaledSize.x * scaledSize.z) / 100;
+
+        res.json({
+            originalSize: { x: size.x, y: size.y, z: size.z },
+            scaledSize,
+            scaleFactor,
+            materialVolume: volumeCm3.toFixed(2),
+            boundingBoxVolume: (size.x * size.y * size.z / 1000).toFixed(2),
+            surfaceArea: surfaceAreaCm2.toFixed(2),
+            modelWeight: modelWeight.toFixed(2),
+            price: price.toFixed(2)
+        });
+
     } catch (error) {
         console.error('Error processing the STL file:', error);
         res.status(500).json({ error: "Error processing the STL file" });
     } finally {
-        // Delete the uploaded file after processing to avoid storage issues
         fs.unlinkSync(filePath);
     }
 });
 
-// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

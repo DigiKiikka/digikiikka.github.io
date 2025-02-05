@@ -10,8 +10,13 @@
     <h1>Upload 3D Model</h1>
     <input type="file" id="fileInput" name="file" />
     <button onclick="uploadFile()">Upload & Calculate</button>
+	<div id="viewer"></div>
+	<div id="modelInfo"></div>
     <p id="priceResult"></p>
 	<h2 id="priceDisplay">Estimated Price: </h2> <!-- Price will be displayed here -->
+	<input type="range" id="scaleSlider" min="10" max="200" value="100">
+	<p>Scaling: <span id="scaleValue">100%</span></p>
+
 
     <div id="viewer"></div> <!-- 3D Model Viewer -->
 
