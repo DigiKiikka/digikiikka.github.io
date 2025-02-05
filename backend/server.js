@@ -31,9 +31,12 @@ app.post('/upload', upload.single('file'), (req, res) => {
     const fileBuffer = fs.readFileSync(filePath);
 
     try {
+        // Convert the buffer to an ArrayBuffer
+        const arrayBuffer = fileBuffer.buffer.slice(fileBuffer.byteOffset, fileBuffer.byteOffset + fileBuffer.byteLength);
+
         // Load STL file using the STLLoader
         const loader = new STLLoader();
-        const geometry = loader.parse(fileBuffer);
+        const geometry = loader.parse(arrayBuffer);
 
         // Compute bounding box for cost estimation
         geometry.computeBoundingBox();
