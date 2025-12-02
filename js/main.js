@@ -77,7 +77,6 @@ jQuery(document).ready(function( $ ) {
     $("#mobile-nav, #mobile-nav-toggle").hide();
   }
 
-  // Smooth scroll for the menu and links with .scrollto classes
   $('.nav-menu a, #mobile-nav a, .scrollto').on('click', function() {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
       var target = $(this.hash);
@@ -130,3 +129,25 @@ jQuery(document).ready(function( $ ) {
   });
 
 });
+
+const slider = document.querySelector('.compare-slider');
+const after = document.querySelector('.img-after');
+const beforeLabel = document.querySelector('.before-label');
+const afterLabel = document.querySelector('.after-label');
+const container = document.querySelector('.compare-container');
+
+slider.addEventListener('input', () => {
+  const value = parseInt(slider.value, 10);
+  const containerWidth = container.offsetWidth;
+
+  after.style.width = value + '%';
+
+  const beforeRightEdge = containerWidth * (value / 100);
+  beforeLabel.style.left = (beforeRightEdge - beforeLabel.offsetWidth - 15) + "px";
+
+  const afterLeftEdge = beforeRightEdge;
+  afterLabel.style.left = (afterLeftEdge + 15) + "px";
+});
+
+
+
